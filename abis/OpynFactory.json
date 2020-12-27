@@ -1,0 +1,108 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "asset",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "AssetAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "asset",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "AssetChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "asset",
+          "type": "string"
+        }
+      ],
+      "name": "AssetDeleted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "OptionsContractCreated",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "getNumberOfOptionsContracts",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "optionsContracts",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "contractName": "OpynFactory",
+  "offset": [
+    25,
+    533
+  ],
+  "sha1": "299c51665ef3f170da22fbdee5b83ca6956ac2ab",
+  "source": "pragma solidity ^0.7.0;\n\ninterface OpynFactory {\n    event OptionsContractCreated(address addr);\n    event AssetAdded(string indexed asset, address indexed addr);\n    event AssetChanged(string indexed asset, address indexed addr);\n    event AssetDeleted(string indexed asset);\n\n    /**\n        * @notice The number of Option Contracts that the Factory contract has stored\n        */\n    function getNumberOfOptionsContracts() external view returns (uint256);\n\n    function optionsContracts(uint256) external view returns (address);\n}",
+  "type": "interface"
+}

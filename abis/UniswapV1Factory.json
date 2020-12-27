@@ -1,0 +1,120 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "exchange",
+          "type": "address"
+        }
+      ],
+      "name": "NewExchange",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "createExchange",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "exchange",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getExchange",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "exchange",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "exchange",
+          "type": "address"
+        }
+      ],
+      "name": "getToken",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getTokenWithId",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "template",
+          "type": "address"
+        }
+      ],
+      "name": "initializeFactory",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "contractName": "UniswapV1Factory",
+  "offset": [
+    25,
+    691
+  ],
+  "sha1": "2f770d0d9222904bc181f84d0af350ed60a7b9ec",
+  "source": "pragma solidity ^0.7.0;\n\ninterface UniswapV1Factory {\n    event NewExchange(address indexed token, address indexed exchange);\n\n    // Public Variables\n    // address public exchangeTemplate;\n    // uint256 public tokenCount;\n    // Create Exchange\n    function createExchange(address token) external returns (address exchange);\n    \n    // Get Exchange and Token Info\n    function getExchange(address token) external view returns (address exchange);\n    function getToken(address exchange) external view returns (address token);\n    function getTokenWithId(uint256 tokenId) external view returns (address token);\n\n    // Never use\n    function initializeFactory(address template) external;\n}",
+  "type": "interface"
+}

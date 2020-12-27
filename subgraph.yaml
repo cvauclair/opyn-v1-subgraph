@@ -1,0 +1,112 @@
+specVersion: 0.0.2
+description: Opyn is a decentralized options protocol.
+repository: https://github.com/cvauclair/opyn-v1-subgraph/
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: OpynFactory
+    network: mainnet
+    source:
+      address: '0xcC5d905b9c2c8C9329Eb4e25dc086369D6C7777C'
+      abi: OpynFactory
+      startBlock: 9680128
+      # startBlock: 9683539
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      file: ./src/mappings/OpynFactory.ts
+      entities:
+        - OpynFactory
+        - OToken
+      abis:
+        - name: OpynFactory
+          file: ./abis/OpynFactory.json
+        - name: OToken
+          file: ./abis/OToken.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        # - name: ERC20SymbolBytes
+        #   file: ./abis/ERC20SymbolBytes.json
+        # - name: ERC20NameBytes
+        #   file: ./abis/ERC20NameBytes.json
+      eventHandlers:
+        - event: OptionsContractCreated(address)
+          handler: handleNewOption
+  - kind: ethereum/contract
+    name: UniswapV1Factory
+    network: mainnet
+    source:
+      address: '0xc0a47dFe034B400B47bDaD5FecDa2621de6c4d95'
+      abi: UniswapV1Factory
+      startBlock: 9680128
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      file: ./src/mappings/UniswapV1Factory.ts
+      entities:
+        - UniswapPair
+        - Token
+      abis:
+        - name: UniswapV1Factory
+          file: ./abis/UniswapV1Factory.json
+        - name: UniswapV1Exchange
+          file: ./abis/UniswapV1Exchange.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        # - name: ERC20SymbolBytes
+        #   file: ./abis/ERC20SymbolBytes.json
+        # - name: ERC20NameBytes
+        #   file: ./abis/ERC20NameBytes.json
+      eventHandlers:
+        - event: NewExchange(indexed address,indexed address)
+          handler: handleNewExchange
+templates:
+  - kind: ethereum/contract
+    name: UniswapV1Exchange
+    network: mainnet
+    source:
+      abi: UniswapV1Exchange
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      file: ./src/mappings/UniswapV1Exchange.ts
+      entities:
+        - TradePair
+        - UniswapPair
+        - Token
+        - Trade
+        - Liquidity
+      abis:
+        - name: UniswapV1Exchange
+          file: ./abis/UniswapV1Exchange.json
+      eventHandlers:
+        - event: EthPurchase(indexed address,indexed uint256,indexed uint256)
+          handler: handleEthPurchase
+        - event: TokenPurchase(indexed address,indexed uint256,indexed uint256)
+          handler: handleTokenPurchase
+        # - event: AddLiquidity(indexed address,indexed uint256,indexed uint256)
+        #   handler: handleAddLiquidity
+        # - event: RemoveLiquidity(indexed address,indexed uint256,indexed uint256)
+        #   handler: handleRemoveLiquidity
+  - kind: ethereum/contract
+    name: ERC20
+    network: mainnet
+    source:
+      abi: ERC20
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      file: ./src/mappings/ERC20.ts
+      entities:
+        - Asset
+      abis:
+        - name: ERC20
+          file: ./abis/ERC20.json
+      # eventHandlers:
+      #   - event: Transfer(indexed address,indexed address,uint256)
+      #     handler: handleTransfer

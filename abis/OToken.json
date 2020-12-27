@@ -1,0 +1,447 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "vaultOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "oTokensBurned",
+          "type": "uint256"
+        }
+      ],
+      "name": "BurnOTokens",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "vaultOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "payer",
+          "type": "address"
+        }
+      ],
+      "name": "ERC20CollateralAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "vaultOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "payer",
+          "type": "address"
+        }
+      ],
+      "name": "ETHCollateralAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amtUnderlyingToPay",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amtCollateralToPay",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "exerciser",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "vaultExercisedFrom",
+          "type": "address"
+        }
+      ],
+      "name": "Exercise",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "issuedTo",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "oTokensIssued",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "vaultOwner",
+          "type": "address"
+        }
+      ],
+      "name": "IssuedOTokens",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amtCollateralToPay",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "vaultOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "liquidator",
+          "type": "address"
+        }
+      ],
+      "name": "Liquidate",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amtCollateralRedeemed",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amtUnderlyingRedeemed",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "vaultOwner",
+          "type": "address"
+        }
+      ],
+      "name": "RedeemVaultBalance",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amtRemoved",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "vaultOwner",
+          "type": "address"
+        }
+      ],
+      "name": "RemoveCollateral",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amountUnderlying",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "vaultOwner",
+          "type": "address"
+        }
+      ],
+      "name": "RemoveUnderlying",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "fees",
+          "type": "uint256"
+        }
+      ],
+      "name": "TransferFee",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "liquidationIncentive",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "liquidationFactor",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "transactionFee",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "minCollateralizationRatio",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "UpdateParameters",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "vaultOwner",
+          "type": "address"
+        }
+      ],
+      "name": "VaultOpened",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "collateral",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "expiry",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "hasExpired",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isExerciseWindow",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "oTokenExchangeRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "int32",
+          "name": "",
+          "type": "int32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "strikePrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "int32",
+          "name": "",
+          "type": "int32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "underlying",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "contractName": "OToken",
+  "offset": [
+    25,
+    2162
+  ],
+  "sha1": "b8049d148f423f994a3cbd8db86eff9a7f9ca767",
+  "source": "pragma solidity ^0.7.0;\n\ninterface OToken {\n    event VaultOpened(address payable vaultOwner);\n    event ETHCollateralAdded(\n        address payable vaultOwner,\n        uint256 amount,\n        address payer\n    );\n    event ERC20CollateralAdded(\n        address payable vaultOwner,\n        uint256 amount,\n        address payer\n    );\n    event IssuedOTokens(\n        address issuedTo,\n        uint256 oTokensIssued,\n        address payable vaultOwner\n    );\n    event Liquidate(\n        uint256 amtCollateralToPay,\n        address payable vaultOwner,\n        address payable liquidator\n    );\n    event Exercise(\n        uint256 amtUnderlyingToPay,\n        uint256 amtCollateralToPay,\n        address payable exerciser,\n        address payable vaultExercisedFrom\n    );\n    event RedeemVaultBalance(\n        uint256 amtCollateralRedeemed,\n        uint256 amtUnderlyingRedeemed,\n        address payable vaultOwner\n    );\n    event BurnOTokens(address payable vaultOwner, uint256 oTokensBurned);\n    event RemoveCollateral(uint256 amtRemoved, address payable vaultOwner);\n    event UpdateParameters(\n        uint256 liquidationIncentive,\n        uint256 liquidationFactor,\n        uint256 transactionFee,\n        uint256 minCollateralizationRatio,\n        address owner\n    );\n    event TransferFee(address payable to, uint256 fees);\n    event RemoveUnderlying(\n        uint256 amountUnderlying,\n        address payable vaultOwner\n    );\n    \n    function name() external view returns (string memory);\n\n    function strikePrice() external view returns (uint256, int32);\n    \n    function underlying() external view returns (address);\n    function collateral() external view returns (address);\n\n    function oTokenExchangeRate() external view returns (uint256, int32);\n\n    // Expiration stuff\n    function expiry() external view returns (uint256);\n    function hasExpired() external view returns (bool);\n    function isExerciseWindow() external view returns (bool);\n\n    // ERC20 stuff\n    function decimals() external view returns (uint8);\n    function symbol() external view returns (string memory);\n    function totalSupply() external view returns (uint256);\n}",
+  "type": "interface"
+}
