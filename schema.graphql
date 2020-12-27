@@ -32,13 +32,6 @@ type Asset @entity {
   options: [OToken]! @derivedFrom(field: "underlying")
 }
 
-enum OptionState {
-  Inactive
-  Active
-  Exercised
-  Expired
-}
-
 enum OptionType {
   PUT
   CALL
