@@ -1,6 +1,6 @@
 import { OptionsContractCreated } from '../types/OpynFactory/OpynFactory'
 import { OpynFactory, Asset, OToken } from '../types/schema'
-import { BigDecimalOne, BigIntZero, getCreateAsset, getCreateEth, ZERO_ADDRESS } from '../utils'
+import { BigDecimalOne, BigIntOne, BigIntZero, getCreateAsset, getCreateEth, ZERO_ADDRESS } from '../utils'
 import { OToken as OTokenContract } from '../types/OpynFactory/OToken'
 import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts'
 
@@ -101,4 +101,12 @@ export function handleNewOption(event: OptionsContractCreated): void {
   oToken.trades = []
 
   oToken.save()
+
+  // Update OpynFactory
+  let opynFactory = getCreateOpynFactory()
+  opynFactory.numOptions = opynFactory.numOptions + BigIntOne
+  let options = opynFactory.options
+  options.push(oToken.id)
+  opynFactory.options = options
+  opynFactory.save()
 }

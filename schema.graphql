@@ -29,7 +29,7 @@ type Asset @entity {
   name: String!
   decimals: Int!
 
-  options: [OToken]! @derivedFrom(field: "underlying")
+  options: [OToken!]! @derivedFrom(field: "underlying")
 }
 
 enum OptionType {
@@ -53,7 +53,7 @@ type OToken @entity {
   type: OptionType!
 
   numTrades: BigInt!
-  trades: [Trade]!
+  trades: [Trade!]!
   latestTrade: Trade
 }
 
@@ -62,10 +62,10 @@ type OpynFactory @entity {
   id: ID! # Address is ID
 
   numOptions: BigInt!
-  options: [OToken]!
+  options: [OToken!]!
 
   numAssets: BigInt!
-  assets: [Asset]!
+  assets: [Asset!]!
 
   totalTradeVolume: BigInt!
 }
