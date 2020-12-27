@@ -87,6 +87,9 @@ export function handleNewOption(event: OptionsContractCreated): void {
     underlying = getCreateAsset(underlyingAssetAddr)
   }
 
+  oToken.underlying = underlying.id
+  oToken.strikeAsset = strikeAsset.id
+
   // Calculate strike price
   let strikePriceResult = contract.strikePrice()
   let base = strikePriceResult.value0
